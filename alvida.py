@@ -82,31 +82,31 @@ class Alvida:
             if colleague == 'Pankaj':
                 message = (
                     f"{colleague} san — Although I did not get the chance to work closely with you, "
-                    "your resource management and organizational skills are truly impressive."
+                    "your resource management and organizational skills are truly impressive. :P"
                 )
             elif colleague == 'Gouse':
                 message = (
                     f"{colleague} anna — Your inclusive and welcoming nature is inspiring, "
-                    "and your depth of understanding in technical topics is highly appreciated."
+                    "and your depth of understanding in technical topics is highly appreciated. :P"
                 )
             elif colleague == 'Neel':
                 message = (
-                    f"{colleague} — It has been a pleasure collaborating with you. "
-                    "I always enjoyed your timing and sense of humor."
+                    f"{colleague} — It has been a pleasure collaborating with you. Hope Everything goes well in your personal and Professional Life. "
+                    "I always enjoyed your timing and sense of humor. :P"
                 )
             elif colleague == 'Karthik':
                 message = (
                     f"{colleague} bro — Your openness and wholehearted nature are truly admirable. "
-                    "And yes, the way you skip trips at the last minute is sometimes more fun than the trip itself!"
+                    "And yes, the way you skip trips at the last minute is sometimes more fun than the trip itself! Jut Kidding :P"
                 )
             elif colleague == 'Chaithanya':
                 message = (
                     f"{colleague} bro — Your dedication, clarity in understanding concepts, "
-                    "and confidence while handling challenges are awesome. Keep it up!"
+                    "and confidence while handling challenges are awesome. Keep it up! :) :P"
                 )
             elif colleague == 'Sudeep':
                 message = (
-                    f"{colleague} bro — Your knowledge, patience, and simple smile are truly admirable."
+                    f"{colleague} bro — Your knowledge, patience, and simple smile are truly admirable. I wish in future i could like to see a movie with you in Theater :P"
                 )
             else:
 
@@ -269,3 +269,14 @@ if __name__ == "__main__":
         "Hey Colleague! Good to See You...\nPlease Enter your Name or Email: ").strip()
     main(user_value)
     input("\nPress Enter to exit...")
+
+
+"""
+---> to create a QR code to open webage whis is hosted in github pages --->> 
+pip install qrcode pillow   
+python build_qr_site.py --url "https://sparachi1011.github.io/farewell" --out site --logo "Yokogawa_logo.png"   
+---> to create a executable using python --->> 
+pip install pyinstaller  
+pyinstaller --onefile --name SaiKoushikParachi_Alvida_Note .\alvida.py
+
+"""
