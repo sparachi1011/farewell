@@ -5,368 +5,379 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Farewell — Parachi Sai Koushik</title>
 <style>
-  :root {
-    /* --- Dark (default) Yokogawa palette --- */
-    --brand-yellow: #FFDD00;  /* Signature diamond */
-    --brand-blue:   #004B8D;  /* Deep Yokogawa blue */
+ :root {
+  /* --- Dark (default) Yokogawa palette --- */
+  --brand-yellow: #FFDD00; /* Signature diamond */
+  --brand-blue:  #004B8D;  /* Deep Yokogawa blue */
+  --bg:    #062247; /* Dark blue background */
+  --panel: #0C2F5A; /* Console panel */
+  --border:#17457B; /* Subtle border */
+  --fg:    #EAF2FF; /* Foreground text */
+  --muted: #AFC2E3; /* Dimmed text */
+  --accent: var(--brand-yellow);
+  --prompt: var(--brand-yellow);
+ }
+ body[data-theme="light"] {
+  --bg:    #F5F9FF;
+  --panel: #FFFFFF;
+  --border:#C9D8EE;
+  --fg:    #0B1A2F;
+  --muted: #5A6C86;
+  --prompt:#C9A600; /* softened yellow in light mode */
+ }
+ * { box-sizing: border-box; }
+ html, body { height: 100%; }
+ body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Consolas, Menlo, "Courier New", monospace;
+  margin: 0; padding: 24px 18px;
+  transition: background-color .2s ease, color .2s ease;
+ }
+ .wrap { max-width: 980px; margin: 0 auto; }
+ .header {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+ }
+ .logo { height: 44px; width: auto; display: block; }
+ .title { font-size: 22px; margin: 0; letter-spacing: .3px; font-weight: 700; }
+ .controls { display: flex; gap: 10px; align-items: center; }
+ .select, .toggle {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--fg);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+ }
+ .toggle:hover, .select:hover { filter: brightness(1.05); }
+ .underline {
+  height: 3px; width: 210px; background:
+  linear-gradient(90deg, var(--brand-yellow), var(--brand-blue));
+  border-radius: 999px; margin: 10px 0 18px;
+ }
+ .inputWrap { margin: 10px 0 14px; }
+ input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #3A3F47; /* grey input background */
+  color: #F3F4F6;      /* light grey text */
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background-color .2s ease, color .2s ease;
+ }
+ body[data-theme="light"] input[type="text"] {
+  background: #E6E8EB; color: #0B1A2F; /* lighter grey in light mode */
+ }
+ input[type="text"]::placeholder { color: #D1D5DB; opacity: 0.95; }
+ body[data-theme="light"] input[type="text"]::placeholder { color: #6B7280; }
+ input[type="text"]:focus { box-shadow: inset 0 0 0 1px var(--accent); }
 
-    --bg:    #062247;  /* Dark blue background */
-    --panel: #0C2F5A;  /* Console panel */
-    --border:#17457B;  /* Subtle border */
-    --fg:    #EAF2FF;  /* Foreground text */
-    --muted: #AFC2E3;  /* Dimmed text */
-    --accent: var(--brand-yellow);
-    --prompt: var(--brand-yellow);
-  }
+ .terminal {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+ }
+ .terminal pre {
+  margin: 0;
+  white-space: pre-wrap; /* wrap long lines */
+  overflow-wrap: anywhere; /* break long words/URLs */
+  word-break: break-word; /* fallback for older engines */
+  hyphens: auto; /* optional hyphenation */
+  line-height: 1.55;
+  max-width: 100%;
+ }
+ .prompt { color: var(--prompt); font-weight: 700; }
+ .prompt::after {
+  content: "▌"; margin-left: 3px; color: var(--accent);
+  animation: blink 1.05s step-end infinite;
+ }
+ @keyframes blink { 50% { opacity: 0; } }
+ @media (prefers-reduced-motion: reduce) {
+  .prompt::after, .typing::after { animation: none; }
+ }
+ .typing::after {
+  content: '▌'; color: var(--accent);
+  margin-left: 2px; animation: blink 1.05s step-end infinite;
+ }
+ .footer { margin-top: 20px; color: var(--muted); font-size: 14px; }
+ a { color: var(--accent); text-decoration: none; }
+ a:hover { text-decoration: underline; }
 
-  /* Light theme variables override when body[data-theme="light"] is set */
-  body[data-theme="light"] {
-    --bg:    #F5F9FF;
-    --panel: #FFFFFF;
-    --border:#C9D8EE;
-    --fg:    #0B1A2F;
-    --muted: #5A6C86;
-    --prompt:#C9A600; /* softened yellow in light mode */
-  }
-
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: Consolas, Menlo, "Courier New", monospace;
-    margin: 0; padding: 24px 18px;
-    transition: background-color .2s ease, color .2s ease;
-  }
-  .wrap { max-width: 980px; margin: 0 auto; }
-
-  /* Header with logo + title + controls (lang & theme) */
+ @media (max-width: 540px) {
   .header {
-    display: grid;
-    grid-template-columns: auto 1fr auto auto;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
+   grid-template-columns: auto 1fr auto;
+   grid-auto-rows: auto;
+   row-gap: 8px;
   }
-  .logo { height: 44px; width: auto; display: block; }
-  .title { font-size: 22px; margin: 0; letter-spacing: .3px; font-weight: 700; }
-  .controls { display: flex; gap: 10px; align-items: center; }
-  .select, .toggle {
-    border: 1px solid var(--border);
-    background: var(--panel);
-    color: var(--fg);
-    padding: 8px 10px;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .toggle:hover, .select:hover { filter: brightness(1.05); }
-
-  .underline {
-    height: 3px; width: 210px; background:
-      linear-gradient(90deg, var(--brand-yellow), var(--brand-blue));
-    border-radius: 999px; margin: 10px 0 18px;
-  }
-
-  /* INPUT (before the first console) */
-  .inputWrap { margin: 10px 0 14px; }
-  input[type="text"] {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: #3A3F47;     /* GREY input background */
-    color: #F3F4F6;          /* light grey text */
-    font-family: inherit;
-    font-size: 15px;
-    outline: none;
-    box-shadow: inset 0 0 0 1px transparent;
-    transition: background-color .2s ease, color .2s ease;
-  }
-  body[data-theme="light"] input[type="text"] {
-    background: #E6E8EB; color: #0B1A2F;  /* lighter grey in light mode */
-  }
-  input[type="text"]::placeholder { color: #D1D5DB; opacity: 0.95; }
-  body[data-theme="light"] input[type="text"]::placeholder { color: #6B7280; }
-  input[type="text"]:focus { box-shadow: inset 0 0 0 1px var(--accent); }
-
-  /* Console panel */
-  .terminal {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 18px;
-    font-size: 15px;
-    position: relative;
-    overflow: hidden;
-    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
-  }
-  /* <pre> text wraps responsively on any screen */
-  .terminal pre {
-    margin: 0;
-    white-space: pre-wrap;       /* wrap long lines */
-    overflow-wrap: anywhere;     /* break long words/URLs */
-    word-break: break-word;      /* fallback for older engines */
-    hyphens: auto;               /* optional hyphenation */
-    line-height: 1.55;
-    max-width: 100%;
-  }
-
-  .prompt { color: var(--prompt); font-weight: 700; }
-  .prompt::after {
-    content: "▌"; margin-left: 3px; color: var(--accent);
-    animation: blink 1.05s step-end infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) {
-    .prompt::after, .typing::after { animation: none; }
-  }
-
-  /* Typewriter caret for the typed blocks */
-  .typing::after {
-    content: '▌'; color: var(--accent);
-    margin-left: 2px; animation: blink 1.05s step-end infinite;
-  }
-
-  .footer { margin-top: 20px; color: var(--muted); font-size: 14px; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* Small screen tweaks */
-  @media (max-width: 540px) {
-    .header {
-      grid-template-columns: auto 1fr auto;
-      grid-auto-rows: auto;
-      row-gap: 8px;
-    }
-    .controls { grid-column: 1 / -1; justify-content: flex-end; }
-    .logo { height: 38px; }
-    .title { font-size: 20px; }
-  }
+  .controls { grid-column: 1 / -1; justify-content: flex-end; }
+  .logo { height: 38px; }
+  .title { font-size: 20px; }
+ }
 </style>
 </head>
 <body>
-  <div class="wrap">
+ <div class="wrap">
+  <!-- Header with logo + title + controls -->
+  <div class="header">
+   <img src="logo.png" class="logo" alt="Yokogawa logo" />
+   <h1 id="title" class="title">Koushik's Farewell — Pythonic Theme</h1>
+   <div class="controls">
+    <!-- Language selector -->
+    <select id="lang" class="select" aria-label="Language">
+     <option value="en">English</option>
+     <option value="hi">हिन्दी</option>
+     <option value="ja">日本語</option>
+    </select>
+    <!-- Dark/Light toggle -->
+    <button id="themeToggle" class="toggle" type="button" aria-label="Toggle theme">🌙</button>
+   </div>
+  </div>
+  <div class="underline"></div>
 
-    <!-- Header with logo + title + controls -->
-    <div class="header">
-      <img src="logo.png" class="logo" alt="Yokogawa logo" />
-      <h1 id="title" class="title">Farewell — Python Console</h1>
-      <div class="controls">
-        <!-- Language selector -->
-        <select id="lang" class="select" aria-label="Language">
-          <option value="en">English</option>
-          <option value="hi">हिन्दी</option>
-          <option value="ja">日本語</option>
-        </select>
-        <!-- Dark/Light toggle -->
-        <button id="themeToggle" class="toggle" type="button" aria-label="Toggle theme">🌙</button>
-      </div>
-    </div>
-    <div class="underline"></div>
-
-    <!-- INPUT (BEFORE the first console, grey background, updated placeholder) -->
-    <div class="inputWrap">
-      <input id="who" type="text"
-        placeholder="Please enter your Name/Email to see Farewell Message" />
-    </div>
-
-    <!-- FIRST CONSOLE: heading & farewell -->
-    <div class="terminal" style="margin-top:8px;">
-<span class="prompt">&gt;&gt;&gt;</span> from alvida import Alvida
-<span class="prompt">&gt;&gt;&gt;</span> Alvida.say_farewell()
-
-<pre id="farewell" class="typing"></pre>
-    </div>
-
-    <!-- RESULT CONSOLE -->
-    <div class="terminal" id="resultBox" style="margin-top:16px; display:none;">
-<pre id="result" class="typing"></pre>
-    </div>
-
-    <!-- CLOSING CONSOLE -->
-    <div class="terminal" style="margin-top:16px;">
-<span class="prompt">&gt;&gt;&gt;</span> Alvida.say_closing_comments()
-
-<pre id="closing" class="typing"></pre>
-    </div>
-
-    <div class="footer">
-      <br/><span id="directLinkLabel">Direct link</span>: <a href="https://sparachi1011.github.io/farewell">https://sparachi1011.github.io/farewell</a>
-    </div>
+  <!-- INPUT (before the first console) -->
+  <div class="inputWrap">
+   <input id="who" type="text"
+          placeholder="Please enter your Name/Email to see Farewell Message" />
   </div>
 
+  <!-- FIRST CONSOLE (hidden until first valid input) -->
+  <div class="terminal" id="farewellBox" style="margin-top:8px; display:none;">
+   <span class="prompt">>></span> from alvida import Alvida<br>
+
+   <span class="prompt">>></span> Alvida.say_farewell()
+   <pre id="farewell" class="typing"></pre>
+  </div>
+
+  <!-- RESULT CONSOLE -->
+  <div class="terminal" id="resultBox" style="margin-top:16px; display:none;">
+   <pre id="result" class="typing"></pre>
+  </div>
+
+  <!-- CLOSING CONSOLE (hidden until first valid input) -->
+  <div class="terminal" id="closingBox" style="margin-top:16px; display:none;">
+   <span class="prompt">>></span> Alvida.say_closing_comments()<br>
+
+   <pre id="closing" class="typing"></pre>
+  </div>
+
+  <div class="footer">
+   <br/><span id="directLinkLabel">Direct link</span>: <a href="https://sparachi1011.github.io/farewell">https://sparachi1011.github.io/farewell</a>
+  </div>
+ </div>
+
 <script>
-  // -----------------------------
-  // Data injected from Python (sourced from alvida.py)  [1](https://ykgwoffice-my.sharepoint.com/personal/parachi_saikoushik_yokogawa_com/Documents/Microsoft%20Copilot%20Chat%20Files/alvida.py)
-  // -----------------------------
-  const farewellTextEN = "\nIt is with mixed emotions that I announce that 13-Feb-2026 will be my LWD from the IT-OT SOC team and Yokogawa. This was not an easy decision, as my journey here has been incredibly rewarding both personally and professionally. I am excited for the next stage of my career, but I will truly miss our daily collaboration and the unique energy this team brings. Thank you for all the memories and smiles that I will cherish for the rest of my life. Yokogawa gave me the opportunity to work with global leaders, domestic clients, and gain on-site exposure that helped elevate my career to the next level. Thank you, Yokogawa and team — I hope our paths cross again soon.";
-  const closingTextEN  = "I leave this Yokogawa chapter with a heart full of gratitude and wonderful memories. I wish you all continued success and happiness in your future endeavors.\n\nI would be happy to stay connected — please feel free to reach out anytime!\nGitHub: https://github.com/sparachi1011/        LinkedIn: https://www.linkedin.com/in/saikoushikparachi/\nPhone: +91-8125131375/9819370113                Email: saikoushik.parachi@gmail.com\n";
-  const messagesEN     = {"Shiozaki san": "\nGoodbye, Shiozaki san!\nThank you for the opportunity to work with you, Shiozaki san! Your leadership and vision are truly unmatched. It has been a pleasure collaborating with you and learning from your experiences. Wishing you all the very best!\n\n", "Shrikanth san": "\nGoodbye, Shrikanth san!\nThank you for the opportunity to work with you, Shrikanth san! Your leadership and vision are truly unmatched. It has been a pleasure collaborating with you and learning from your experiences. Wishing you all the very best!\n\n", "Furuya san": "\nGoodbye, Furuya san!\nThank you for the opportunity to work with you, Furuya san! Your leadership and vision are truly unmatched. It has been a pleasure collaborating with you and learning from your experiences. Wishing you all the very best!\n\n", "Rajeev san": "\nGoodbye, Rajeev san!\nI'm blessed to have had you as a manager, Rajeev san. Your trust and guidance have been invaluable. Your skills — team building, motivation, composure, patience, vision, and support — are exceptional. I can confidently say that you are a true leader beyond just a manager. It has been a pleasure working with you, and I've learned a lot. Wishing you all the very best!\n", "Jeeth": "\nGoodbye, Jeeth!\nJeeth were the first buddy I spoke to in the team 4.6 years ago. You completely changed my perspective towards Yokogawa and brought positive vibes into my journey. I've learned so much from the way you approach situations and challenges with positivity and clarity. I truly see you as a future leader — your skills in planning, organization, empathy, timely delivery, motivation, and communication stand out. The trips we had with the team gave everyone the perfect escape into nature, and those memories will always be cherished. Wishing you all the very best in your professional career and spiritual journey!\n", "Sumitra": "\nGoodbye, Sumitra!\nThank you for the opportunity to work with you, Sumitra! Your selflessness and supportive nature are truly admirable. It has been a pleasure collaborating with you and learning from you.\n", "Pankaj": "\nGoodbye, Pankaj!\nPankaj san — Although I did not get the chance to work closely with you, your resource management and organizational skills are truly impressive. :P\n", "Gouse": "\nGoodbye, Gouse!\nGouse anna — Your inclusive and welcoming nature is inspiring, and your depth of understanding in technical topics is highly appreciated. :P\n", "Neel": "\nGoodbye, Neel!\nNeel — It has been a pleasure collaborating with you. Hope Everything goes well in your personal and Professional Life. I always enjoyed your timing and sense of humor. :P\n", "Karthik": "\nGoodbye, Karthik!\nKarthik bro — Your openness and wholehearted nature are truly admirable. And yes, the way you skip trips at the last minute is sometimes more fun than the trip itself! Jut Kidding :P\n", "Chaithanya": "\nGoodbye, Chaithanya!\nChaithanya bro — Your dedication, clarity in understanding concepts, and confidence while handling challenges are awesome. Keep it up! :) :P\n", "Sudeep": "\nGoodbye, Sudeep!\nSudeep bro — Your knowledge, patience, and simple smile are truly admirable. I wish in future i could like to see a movie with you in Theater :P\n", "Deepali": "\nGoodbye, Deepali!\nDeepali — I'm amazed by your transformation in technical skills, incident mitigation,and Python programming. Keep going strong! \n", "Shreyanshi": "\nGoodbye, Shreyanshi!\nShreyanshi — You have become a key person in the smooth execution and maintenance of the project. That progress is commendable.\n", "Jyoti": "\nGoodbye, Jyoti!\nJyoti — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Akshata": "\nGoodbye, Akshata!\nAkshata — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Shiv": "\nGoodbye, Shiv!\nShiv — Your energy, enthusiasm towards work, and willingness to help team members are truly appreciable.\n", "Ajay": "\nGoodbye, Ajay!\nAjay — Your energy, enthusiasm towards work, and willingness to help team members are truly appreciable.\n", "Sandhya": "\nGoodbye, Sandhya!\nSandhya — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Amar": "\nGoodbye, Amar!\nAmar — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Varun": "\nGoodbye, Varun!\nIt has been a pleasure sharing the workspace with the Cloud Team — Sameer, Mahesh, Varun, Prajwal, Vandita, and everyone else. Although I didn't get the opportunity to work directly with you, I have always admired your expertise and dedication. Wishing you all the very best in your future endeavors!\n", "Prajwal": "\nGoodbye, Prajwal!\nIt has been a pleasure sharing the workspace with the Cloud Team — Sameer, Mahesh, Varun, Prajwal, Vandita, and everyone else. Although I didn't get the opportunity to work directly with you, I have always admired your expertise and dedication. Wishing you all the very best in your future endeavors!\n", "Vandita": "\nGoodbye, Vandita!\nIt has been a pleasure sharing the workspace with the Cloud Team — Sameer, Mahesh, Varun, Prajwal, Vandita, and everyone else. Although I didn't get the opportunity to work directly with you, I have always admired your expertise and dedication. Wishing you all the very best in your future endeavors!\n", "Mahesh": "\nGoodbye, Mahesh!\nIt has been a pleasure sharing the workspace with the Cloud Team — Sameer, Mahesh, Varun, Prajwal, Vandita, and everyone else. Although I didn't get the opportunity to work directly with you, I have always admired your expertise and dedication. Wishing you all the very best in your future endeavors!\n", "Sameer": "\nGoodbye, Sameer!\nIt has been a pleasure sharing the workspace with the Cloud Team — Sameer, Mahesh, Varun, Prajwal, Vandita, and everyone else. Although I didn't get the opportunity to work directly with you, I have always admired your expertise and dedication. Wishing you all the very best in your future endeavors!\n", "Harsha": "\nGoodbye, Harsha!\nIt has been a pleasure sharing the workspace with the Cloud Team — Sameer, Mahesh, Varun, Prajwal, Vandita, and everyone else. Although I didn't get the opportunity to work directly with you, I have always admired your expertise and dedication. Wishing you all the very best in your future endeavors!\n"};
-  const tokenIndex     = {"shiozaki": "Shiozaki san", "shrikanth": "Shrikanth san", "furuya": "Furuya san", "rajeev": "Rajeev san", "jeeth": "Jeeth", "sumitra": "Sumitra", "pankaj": "Pankaj", "gouse": "Gouse", "neel": "Neel", "karthik": "Karthik", "chaithanya": "Chaithanya", "sudeep": "Sudeep", "deepali": "Deepali", "shreyanshi": "Shreyanshi", "jyoti": "Jyoti", "akshata": "Akshata", "shiv": "Shiv", "ajay": "Ajay", "sandhya": "Sandhya", "amar": "Amar", "varun": "Varun", "prajwal": "Prajwal", "vandita": "Vandita", "mahesh": "Mahesh", "sameer": "Sameer", "harsha": "Harsha"}; // token->canonical name
-  const defaultMsgEN   = "\nGoodbye, Colleague!\nWishing you the very best for your future. It was truly great working with you!Amazing working with you!, Enjoy your journey ahead!\n"; // from Alvida("Colleague").say_goodbye()  [1](https://ykgwoffice-my.sharepoint.com/personal/parachi_saikoushik_yokogawa_com/Documents/Microsoft%20Copilot%20Chat%20Files/alvida.py)
+ // ---------------------------- Data injected from Python (sourced from alvida.py) ----------------------------
+ const farewellTextEN = "\nIt is with mixed emotions that I announce that 13-Feb-2026 will be my last working day with the IT-OT SOC team and Yokogawa. This was not an easy decision, as my journey here has been incredibly rewarding both personally and professionally.I am excited for the next stage of my career, but I will truly miss our daily collaboration and the unique energy this team brings. Thank you for all the memories and smiles that I will cherish for the rest of my life.Yokogawa gave me the opportunity to work with global leaders, domestic clients, and gain on-site exposure that helped elevate my career to the next level.Thank you, Yokogawa and team — I hope our paths cross again soon.";
+ const closingTextEN  = "   I leave this Yokogawa chapter with a heart full of gratitude and countless wonderful memories. Every experience, every interaction, and every moment here has shaped me in ways I will always cherish.Thank you all for being such an important part of my journey. I genuinely wish each one of you continued success, growth, and happiness in everything you pursue moving forward.I would be truly happy to stay connected — please feel free to reach out anytime. Your connection and friendship will always mean a lot to me.\nGitHub: https://github.com/sparachi1011/        LinkedIn: https://www.linkedin.com/in/saikoushikparachi/\nPhone: +91-8125131375 / 9819370113              Email: saikoushik.parachi@gmail.com";
+ const messagesEN     = {"Shiozaki san": "\nGoodbye, Shiozaki san!\nShiozaki san, thank you for giving me the opportunity to work under your guidance.Your leadership, clarity of vision, and ability to steer the team with confidence and purpose have always inspired me. Working with you has been one of the most meaningful parts of my journey here.Your strategic thinking, calm decision-making, and commitment to excellence have shaped not just the team, but also my own professional growth. It has truly been a privilege to learn from your experience and witness the impact of your leadership firsthand.Thank you for the trust, the opportunities, and the environment you created for us to grow, contribute, and excel.Wishing you continued success in everything you lead and build.It has been an honor collaborating with you.\n\n", "Shrikanth san": "\nGoodbye, Shrikanth san!\nShrikanth san, thank you for giving me the opportunity to work under your guidance.Your leadership, clarity of vision, and ability to steer the team with confidence and purpose have always inspired me. Working with you has been one of the most meaningful parts of my journey here.Your strategic thinking, calm decision-making, and commitment to excellence have shaped not just the team, but also my own professional growth. It has truly been a privilege to learn from your experience and witness the impact of your leadership firsthand.Thank you for the trust, the opportunities, and the environment you created for us to grow, contribute, and excel.Wishing you continued success in everything you lead and build.It has been an honor collaborating with you.\n\n", "Furuya san": "\nGoodbye, Furuya san!\nFuruya san, thank you for giving me the opportunity to work under your guidance.Your leadership, clarity of vision, and ability to steer the team with confidence and purpose have always inspired me. Working with you has been one of the most meaningful parts of my journey here.Your strategic thinking, calm decision-making, and commitment to excellence have shaped not just the team, but also my own professional growth. It has truly been a privilege to learn from your experience and witness the impact of your leadership firsthand.Thank you for the trust, the opportunities, and the environment you created for us to grow, contribute, and excel.Wishing you continued success in everything you lead and build.It has been an honor collaborating with you.\n\n", "Rajeev san": "\nGoodbye, Rajeev san!\nI feel truly blessed to have had you as my manager, Rajeev san. Your trust, guidance, and unwavering belief in me have meant more than I can ever express. You didn't just lead the team — you shaped us, inspired us, and stood by us with patience, clarity, and purpose.Your abilities in team building, motivation, composure, patience, vision, and support are extraordinary. But what makes you truly special is the heart and humility behind everything you do. You are not just a manager to me — you are a mentor, a role model, and someone I deeply respect.I've learned so much from you, not only professionally but personally. Working with you has been one of the most meaningful parts of my journey. Thank you for every lesson, every encouragement, and every moment of support.Wishing you nothing but the very best ahead — you deserve all the success and happiness in the world.\n", "Jeeth": "\nGoodbye, Jeeth!\nJeeth, you were the first buddy I spoke to in the team 4.6 years ago, and that moment truly shaped my journey here. You completely changed my perspective toward Yokogawa and brought so much positivity into my experience.I've learned a lot from you — especially from the way you handle situations and challenges with such clarity and optimism. I genuinely see you as a future leader. Your strengths in planning, organization, empathy, timely delivery, motivation, and communication really stand out and make a difference.The trips we took with the team gave all of us the perfect escape into nature, and those memories will always stay close to my heart.Wishing you all the very best in your professional career and on your spiritual journey. May both lead you to growth, peace, and fulfillment!\n", "Sumitra": "\nGoodbye, Sumitra!\nThank you for the opportunity to work with you, Sumitra! Your selflessness and supportive nature are truly admirable, and they make a real difference to everyone around you.It has been a pleasure collaborating with you and learning from you. I genuinely appreciate the positivity and clarity you bring into every interaction.Wishing you continued success and growth in everything you do!\n", "Pankaj": "\nGoodbye, Pankaj!\nPankaj san — Although I did not get the chance to work closely with you, your resource management and organizational skills are truly impressive.\n", "Gouse": "\nGoodbye, Gouse!\nGouse anna — your inclusive and welcoming nature has always touched me more than you know. You have this rare ability to make people feel seen, heard, and genuinely valued, and that warmth creates such a positive space for everyone around you.I truly admire the depth of your understanding in technical topics not only in networking — not just the knowledge itself, but the calm, patient, and humble way you share it. You make learning easier, conversations richer, and complex things feel simple. It’s something I deeply appreciate. 😊🙏Thank you for being the kind of person who lifts others up just by being yourself. Stay the same wonderful anna — the team is better because of you.\n", "Neel": "\nGoodbye, Neel!\nNeel — it has truly been a pleasure collaborating with you. I genuinely wish that everything goes beautifully for you in both your personal and professional life. You deserve every bit of happiness and success that comes your way.I've always enjoyed your perfect timing and sense of humor — you have this natural way of lightening the mood and making even the busiest days feel easier. 😄All the very best, bro! Stay cheerful, stay grounded, and keep spreading those good vibes. 🙂😜✨\n", "Karthik": "\nGoodbye, Karthik!\nKarthik bro — Your openness and wholehearted nature have always stood out to me. You bring a kind of warmth and honesty that makes people feel instantly at ease, and that's something truly rare and special.And yes… the way you skip trips at the very last minute still makes all of us laugh — sometimes it becomes a bigger story than the trip itself! Just kidding 😄😜But beyond the jokes, I really treasure the memories we've created together in recent times. Those moments — the conversations, the laughter, the small things — have meant a lot to me, and I'll genuinely carry them forward.Wishing you all the very best, buddy. Stay the same kind-hearted, genuine, and uplifting person you are. You bring light wherever you go — never lose that. 🙂✨\n", "Chaithanya": "\nGoodbye, Chaithanya!\nChaithanya bro — Chaithanya, your dedication truly stands out. The way you grasp concepts with such clarity and face challenges with confidence always inspires me. It's not just your skills — it's the heart you put into everything you do that makes a real difference.You are one of the very few in the team whom I can always count on — someone I can trust and rely upon, not just professionally but personally as well. That means a lot to me.I genuinely admire the passion and positivity you bring into your work. Keep believing in yourself, keep growing, and keep shining — you're capable of so much more than you realize. 🙂💛\n", "Sudeep": "\nGoodbye, Sudeep!\nSudeep bro — Your knowledge, your patience, and even that simple, genuine smile of yours are truly admirable. You have a calmness and kindness that make people feel comfortable around you, and that's something I've always appreciated.And yes… someday in the future, it would be fun to catch a movie with you in the theatre — just for the laughs and the good company! 😄🍿😜Stay the same warm and wonderful person you are. Wishing you happiness and success in everything you do!\n", "Deepali": "\nGoodbye, Deepali!\nDeepali — I'm genuinely amazed by how much you've grown — in your technical skills, your incident-mitigation approach, and especially your progress in Python programming. Watching your transformation has been inspiring, and it shows how much dedication and hard work you've put in.I truly hope you continue exploring Python and AI-based skills, because you have so much potential to go even further. Keep learning, keep experimenting, and keep pushing your limits — you're on a great path.I also hope our paths cross again in the future. Until then, keep going strong and shine brighter with each step you take!\n", "Shreyanshi": "\nGoodbye, Shreyanshi!\nShreyanshi — You have become a key person in the smooth execution and maintenance of the project. That progress is commendable.\n", "Jyoti": "\nGoodbye, Jyoti!\nJyoti — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Akshata": "\nGoodbye, Akshata!\nAkshata — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Shiv": "\nGoodbye, Shiv!\nShiv — Your energy and enthusiasm toward work have always stood out, Shiv. You bring a spark that lifts the whole team, and it truly makes a difference.What I appreciate even more is your willingness to step in and help team members whenever they need support. That kindness, that readiness to contribute, and that positive spirit are qualities not everyone has — and they are genuinely appreciable.Keep shining with the same passion and drive. You're doing great, and your effort never goes unnoticed!\n", "Ajay": "\nGoodbye, Ajay!\nAjay — Your energy and enthusiasm toward work have always stood out, Ajay. You bring a spark that lifts the whole team, and it truly makes a difference.What I appreciate even more is your willingness to step in and help team members whenever they need support. That kindness, that readiness to contribute, and that positive spirit are qualities not everyone has — and they are genuinely appreciable.Keep shining with the same passion and drive. You're doing great, and your effort never goes unnoticed!\n", "Sandhya": "\nGoodbye, Sandhya!\nSandhya — Even though we didn't work closely together, I've always noticed your dedication to learning, taking ownership, and completing your tasks on time. These qualities are a true asset to the team and speak volumes about your commitment.Your observations and investigation techniques during incident responses are truly commendable. The way you approach problems with clarity and attention to detail shows how capable and reliable you are.Keep it up — you're growing fast, and your efforts genuinely make a difference!\n", "Amar": "\nGoodbye, Amar!\nAmar — Though I did not work closely with you, your dedication to learning and completing tasks on time is a great asset to the team. Keep it up!\n", "Varun": "\nGoodbye, Varun!\nIt has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\nYour contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself.Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!\n", "Prajwal": "\nGoodbye, Prajwal!\nIt has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\nYour contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself.Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!\n", "Vandita": "\nGoodbye, Vandita!\nIt has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\nYour contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself.Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!\n", "Mahesh": "\nGoodbye, Mahesh!\nIt has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\nYour contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself.Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!\n", "Sameer": "\nGoodbye, Sameer!\nIt has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\nYour contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself.Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!\n", "Harsha": "\nGoodbye, Harsha!\nIt has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\nYour contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself.Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!\n"};
+ const tokenIndex     = {"shiozaki": "Shiozaki san", "shrikanth": "Shrikanth san", "furuya": "Furuya san", "rajeev": "Rajeev san", "jeeth": "Jeeth", "sumitra": "Sumitra", "pankaj": "Pankaj", "gouse": "Gouse", "neel": "Neel", "karthik": "Karthik", "chaithanya": "Chaithanya", "sudeep": "Sudeep", "deepali": "Deepali", "shreyanshi": "Shreyanshi", "jyoti": "Jyoti", "akshata": "Akshata", "shiv": "Shiv", "ajay": "Ajay", "sandhya": "Sandhya", "amar": "Amar", "varun": "Varun", "prajwal": "Prajwal", "vandita": "Vandita", "mahesh": "Mahesh", "sameer": "Sameer", "harsha": "Harsha"};      // token->canonical name
+ const defaultMsgEN   = "\nGoodbye, Colleague!\nWishing you all the very best for your future, Colleague. It has truly been wonderful working with you!\nI’ve genuinely enjoyed every interaction — your positivity, professionalism, and the ease you bring into teamwork always made collaborations smoother and more enjoyable.\nAmazing working with you, and I hope your journey ahead is filled with success, happiness, and exciting new opportunities. Enjoy every step forward! 🌟🙂\n";     // from Alvida("Colleague").say_goodbye()
+ const TRANSLATIONS   = {};
+ const MIN = 4;
 
-  // Optional translations payload (UI + content)
-  // See Python docstring for format.
-  const TRANSLATIONS = {};
-
-  const MIN = 4;
-
-  // -----------------------------
-  // UI strings by language (fallbacks if TRANSLATIONS.ui is missing)
-  // -----------------------------
-  const UI_FALLBACK = {
-    en: {
-      title: "Farewell — Python Console",
-      placeholder: "Please enter your Name/Email to see Farewell Message",
-      direct_link: "Direct link"
-    },
-    hi: {
-      title: "फेयरवेल — पायथन कंसोल",
-      placeholder: "फेयरवेल संदेश देखने के लिए अपना नाम/ईमेल दर्ज करें",
-      direct_link: "सीधा लिंक"
-    },
-    ja: {
-      title: "送別 — Python コンソール",
-      placeholder: "送別メッセージを見るには氏名/メールを入力してください",
-      direct_link: "直接リンク"
-    }
+ // ---------------------------- UI strings by language (fallbacks) ----------------------------
+ const UI_FALLBACK = {
+  en: {
+    title: "Koushik's Farewell — Pythonic Theme",
+    placeholder: "Please enter your Name/Email to see Farewell Message",
+    direct_link: "Direct link"
+  },
+  hi: {
+    title: "फेयरवेल — पायथन कंसोल",
+    placeholder: "फेयरवेल संदेश देखने के लिए अपना नाम/ईमेल दर्ज करें",
+    direct_link: "सीधा लिंक"
+  },
+  ja: {
+    title: "送別 — Python コンソール",
+    placeholder: "送別メッセージを見るには氏名/メールを入力してください",
+    direct_link: "直接リンク"
+  }
+ };
+ function uiStrings(lang) {
+  const source = (TRANSLATIONS.ui && TRANSLATIONS.ui[lang]) || UI_FALLBACK[lang] || UI_FALLBACK.en;
+  return {
+    title:       source.title       || UI_FALLBACK.en.title,
+    placeholder: source.placeholder || UI_FALLBACK.en.placeholder,
+    direct_link: source.direct_link || UI_FALLBACK.en.direct_link
   };
+ }
 
-  function uiStrings(lang) {
-    const source = (TRANSLATIONS.ui && TRANSLATIONS.ui[lang]) || UI_FALLBACK[lang] || UI_FALLBACK.en;
-    return {
-      title: source.title || UI_FALLBACK.en.title,
-      placeholder: source.placeholder || UI_FALLBACK.en.placeholder,
-      direct_link: source.direct_link || UI_FALLBACK.en.direct_link
-    };
-  }
+ // ---------------------------- Content accessors per language ----------------------------
+ function contentFor(lang) {
+  const pack = (TRANSLATIONS.content && TRANSLATIONS.content[lang]) || null;
+  return {
+    farewell:  pack?.farewell  ?? farewellTextEN,
+    closing:   pack?.closing   ?? closingTextEN,
+    defaultMsg:pack?.default   ?? defaultMsgEN,
+    messages:  pack?.messages  ?? {},
+  };
+ }
 
-  // -----------------------------
-  // Content accessors per language
-  // -----------------------------
-  function contentFor(lang) {
-    const pack = (TRANSLATIONS.content && TRANSLATIONS.content[lang]) || null;
-    return {
-      farewell: pack?.farewell || farewellTextEN,
-      closing:  pack?.closing || closingTextEN,
-      defaultMsg: pack?.default || defaultMsgEN,
-      messages: pack?.messages || {},
-    };
+ // ---------------------------- Normalization (mirrors Python) ----------------------------
+ function normalize(s) {
+  s = s.toLowerCase().trim();
+  s = s.replace(/[\-._]+/g, ' ');
+  s = s.replace(/[^a-z0-9\s]/g, '');
+  s = s.replace(/\s+/g, ' ');
+  return s;
+ }
+ function tokensFrom(input) {
+  const local = input.split('@')[0]; // if email, use local part
+  const norm  = normalize(local);
+  return norm ? norm.split(' ').filter(Boolean) : [];
+ }
+ function findName(userInput) {
+  const toks = tokensFrom(userInput);
+  if (!toks.length) return null;
+  // 1) exact token hit
+  for (const t of toks) {
+    if (tokenIndex[t]) return tokenIndex[t];
   }
-
-  // -----------------------------
-  // Normalization (mirrors Python logic)  [1](https://ykgwoffice-my.sharepoint.com/personal/parachi_saikoushik_yokogawa_com/Documents/Microsoft%20Copilot%20Chat%20Files/alvida.py)
-  // -----------------------------
-  function normalize(s) {
-    s = s.toLowerCase().trim();
-    s = s.replace(/[-._]+/g, ' ');
-    s = s.replace(/[^a-z0-9\s]/g, '');
-    s = s.replace(/\s+/g, ' ');
-    return s;
-  }
-  function tokensFrom(input) {
-    const local = input.split('@')[0]; // if email, use local part
-    const norm = normalize(local);
-    return norm ? norm.split(' ').filter(Boolean) : [];
-  }
-  function findName(userInput) {
-    const toks = tokensFrom(userInput);
-    if (!toks.length) return null;
-
-    // 1) exact token hit
-    for (const t of toks) {
-      if (tokenIndex[t]) return tokenIndex[t];
+  // 2) substring either direction, min length 4
+  for (const t of toks) {
+    if (t.length < MIN) continue;
+    for (const key in tokenIndex) {
+      if (key.length < MIN) continue;
+      if (key.includes(t) || t.includes(key)) return tokenIndex[key];
     }
-    // 2) substring either direction, min length 4
-    for (const t of toks) {
-      if (t.length < MIN) continue;
-      for (const key in tokenIndex) {
-        if (key.length < MIN) continue;
-        if (key.includes(t) || t.includes(key)) return tokenIndex[key];
-      }
+  }
+  return null;
+ }
+
+ // ---------------------------- Typing animation helpers ----------------------------
+ function typeInto(el, text, speed=12, cb=null) {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) { el.textContent = text; el.classList.remove('typing'); if (cb) cb(); return; }
+  el.textContent = '';
+  let i = 0;
+  (function tick() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(tick, speed);
+    } else {
+      el.classList.remove('typing');
+      if (cb) cb();
     }
-    return null;
-  }
+  })();
+ }
 
-  // -----------------------------
-  // Typing animation helpers
-  // -----------------------------
-  function typeInto(el, text, speed=12, cb=null) {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { el.textContent = text; el.classList.remove('typing'); if (cb) cb(); return; }
-    el.textContent = '';
-    let i = 0;
-    (function tick() {
-      if (i < text.length) {
-        el.textContent += text[i++];
-        setTimeout(tick, speed);
-      } else {
-        el.classList.remove('typing');
-        if (cb) cb();
-      }
-    })();
-  }
-
-  // -----------------------------
-  // Theme toggle (dark/light) with persistence
-  // -----------------------------
-  const themeToggleBtn = document.getElementById('themeToggle');
-  function applyTheme(theme) {
-    // theme: 'dark' | 'light' | 'auto'
-    if (theme === 'light') {
+ // ---------------------------- Theme toggle (dark/light) ----------------------------
+ const themeToggleBtn = document.getElementById('themeToggle');
+ function applyTheme(theme) {
+  if (theme === 'light') {
+    document.body.setAttribute('data-theme', 'light');
+    themeToggleBtn.textContent = '☀️';
+  } else if (theme === 'dark') {
+    document.body.removeAttribute('data-theme');
+    themeToggleBtn.textContent = '🌙';
+  } else {
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
       document.body.setAttribute('data-theme', 'light');
       themeToggleBtn.textContent = '☀️';
-    } else if (theme === 'dark') {
+    } else {
       document.body.removeAttribute('data-theme');
       themeToggleBtn.textContent = '🌙';
-    } else {
-      // auto → match media
-      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-        document.body.setAttribute('data-theme', 'light');
-        themeToggleBtn.textContent = '☀️';
-      } else {
-        document.body.removeAttribute('data-theme');
-        themeToggleBtn.textContent = '🌙';
-      }
     }
   }
-  function initTheme() {
-    const saved = localStorage.getItem('theme') || 'auto';
-    applyTheme(saved);
-    themeToggleBtn.addEventListener('click', () => {
-      const current = localStorage.getItem('theme') || 'auto';
-      const next = current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', next);
-      applyTheme(next);
-    });
-    // React to OS changes only when on 'auto'
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
-      if ((localStorage.getItem('theme') || 'auto') === 'auto') applyTheme('auto');
-    });
-  }
+ }
+ function initTheme() {
+  const saved = localStorage.getItem('theme') || 'auto';
+  applyTheme(saved);
+  themeToggleBtn.addEventListener('click', () => {
+    const current = localStorage.getItem('theme') || 'auto';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+    if ((localStorage.getItem('theme') || 'auto') === 'auto') applyTheme('auto');
+  });
+ }
 
-  // -----------------------------
-  // Language selector with persistence
-  // -----------------------------
-  const langSelect = document.getElementById('lang');
-  const titleEl = document.getElementById('title');
-  const inputEl = document.getElementById('who');
-  const directLinkLabel = document.getElementById('directLinkLabel');
+ // ---------------------------- Language selector ----------------------------
+ const langSelect = document.getElementById('lang');
+ const titleEl = document.getElementById('title');
+ const inputEl = document.getElementById('who');
+ const directLinkLabel = document.getElementById('directLinkLabel');
+ const farewellBox = document.getElementById('farewellBox');
+ const closingBox  = document.getElementById('closingBox');
+ let hasActivated = false; // becomes true after first valid input
 
-  function applyLanguage(lang) {
-    // UI strings
-    const ui = uiStrings(lang);
-    titleEl.textContent = ui.title;
-    inputEl.setAttribute('placeholder', ui.placeholder);
-    directLinkLabel.textContent = ui.direct_link;
+ function applyLanguage(lang) {
+  const ui = uiStrings(lang);
+  titleEl.textContent = ui.title;
+  inputEl.setAttribute('placeholder', ui.placeholder);
+  directLinkLabel.textContent = ui.direct_link;
 
-    // Re-type farewell & closing in selected language (or fallback)
+  // Only render farewell/closing AFTER the first valid user input.
+  if (hasActivated) {
     const pack = contentFor(lang);
     const farewellEl = document.getElementById('farewell');
     const closingEl  = document.getElementById('closing');
+    farewellEl.classList.add('typing');
+    closingEl.classList.add('typing');
+    typeInto(farewellEl, pack.farewell, 10, () => {
+      typeInto(closingEl, pack.closing, 10);
+    });
+  }
+ }
 
+ function initLanguage() {
+  const saved = localStorage.getItem('lang');
+  let lang = saved || (navigator.language || 'en').slice(0,2).toLowerCase();
+  if (!['en','hi','ja'].includes(lang)) lang = 'en';
+  langSelect.value = lang;
+  applyLanguage(lang);
+  langSelect.addEventListener('change', () => {
+    const chosen = langSelect.value;
+    localStorage.setItem('lang', chosen);
+    applyLanguage(chosen);
+  });
+ }
+
+ // ---------------------------- Result console behavior ----------------------------
+ const resultBox = document.getElementById('resultBox');
+ const resultEl  = document.getElementById('result');
+
+ function showResult(text) {
+  resultBox.style.display = 'block';
+  resultEl.classList.add('typing');
+  typeInto(resultEl, text, 12);
+ }
+
+ function showMessageForInput(rawInput) {
+  // Do not show ANY message when input is empty/whitespace.
+  if (!rawInput || !rawInput.trim()) {
+    resultBox.style.display = 'none';
+    return;
+  }
+
+  const lang = langSelect.value || 'en';
+  const pack = contentFor(lang);
+  const name = findName(rawInput);
+
+  // First time with valid input → reveal farewell & closing consoles.
+  if (!hasActivated) {
+    hasActivated = true;
+    farewellBox.style.display = 'block';
+    closingBox.style.display  = 'block';
+    const farewellEl = document.getElementById('farewell');
+    const closingEl  = document.getElementById('closing');
     farewellEl.classList.add('typing');
     closingEl.classList.add('typing');
     typeInto(farewellEl, pack.farewell, 10, () => {
@@ -374,69 +385,37 @@
     });
   }
 
-  function initLanguage() {
-    const saved = localStorage.getItem('lang');
-    let lang = saved || (navigator.language || 'en').slice(0,2).toLowerCase();
-    if (!['en','hi','ja'].includes(lang)) lang = 'en';
-    langSelect.value = lang;
-    applyLanguage(lang);
-
-    langSelect.addEventListener('change', () => {
-      const chosen = langSelect.value;
-      localStorage.setItem('lang', chosen);
-      applyLanguage(chosen);
-    });
+  if (name) {
+    const translated = pack.messages[name];
+    const base = translated ?? messagesEN[name] ?? pack.defaultMsg ?? defaultMsgEN;
+    const header = `>>> Alvida('{name}').say_goodbye()\n\n`.replace('{name}', name);
+    showResult(header + base);
+  } else {
+    // No match despite non-empty input → show default.
+    showResult(pack.defaultMsg ?? defaultMsgEN);
   }
+ }
 
-  // -----------------------------
-  // Result console (uses translations if provided)
-  // -----------------------------
-  const resultBox = document.getElementById('resultBox');
-  const resultEl  = document.getElementById('result');
-
-  function showResult(text) {
-    resultBox.style.display = 'block';
-    resultEl.classList.add('typing');
-    typeInto(resultEl, text, 12);
+ // Handle Enter on input
+ inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    showMessageForInput(inputEl.value);
   }
+ });
 
-  function showMessageForInput(rawInput) {
-    const lang = langSelect.value || 'en';
-    const pack = contentFor(lang);
-    const name = findName(rawInput);
+ // Deep-link: ?q=...
+ const urlParams = new URLSearchParams(window.location.search);
+ const q = urlParams.get('q');
 
-    if (name) {
-      // Prefer translated message if provided; else English; else default
-      const translated = pack.messages[name];
-      const base = translated || messagesEN[name] || pack.defaultMsg || defaultMsgEN;
-      const header = `>>> Alvida('{name}').say_goodbye()\n\n`.replace('{name}', name);
-      showResult(header + base);
-    } else {
-      // Fallback: your default message (translated if available)
-      showResult(pack.defaultMsg || defaultMsgEN);
-    }
+ function boot() {
+  initTheme();
+  initLanguage();
+  if (q && q.trim()) {
+    inputEl.value = q;
+    showMessageForInput(q);
   }
-
-  // Handle Enter on input
-  inputEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      showMessageForInput(inputEl.value);
-    }
-  });
-
-  // Deep-link: ?q=...
-  const urlParams = new URLSearchParams(window.location.search);
-  const q = urlParams.get('q');
-  function boot() {
-    initTheme();
-    initLanguage();
-
-    if (q) {
-      inputEl.value = q;
-      showMessageForInput(q);
-    }
-  }
-  boot();
+ }
+ boot();
 </script>
 </body>
 </html>
