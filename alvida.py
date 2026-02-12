@@ -141,13 +141,13 @@ class Alvida:
                     "Thank you for being such a wonderful colleague and an even better human being. I sincerely wish you all the success, happiness, and beautiful smiles that life has to offer in your future journey."
                     "Stay amazing, and keep inspiring everyone around you!"
                 )
-        elif colleague in ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha']:
+        elif colleague in ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Thangella.Maheswara@yokogawa.com', 'mahes', 'maheswara', 'Sameer', 'Harsha']:
             message = (
                 f"   It has been a real pleasure sharing the workspace with the Cloud Team — Varun bhai, Sameer, Mahesh, Prajwal, Vandita, and everyone else. Even though I didn't get the chance to work with you all directly, I have always admired the expertise, dedication, and professionalism each of you brings to the table.\n"
                 "Your contributions, passion for learning, and commitment to excellence have always stood out, and being around such a talented team has been inspiring in itself."
                 "Wishing every one of you the very best in your future endeavors — may you continue to excel, innovate, and achieve great milestones ahead!"
             )
-        elif colleague in ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep', 'Charvie', 'Soma', 'Kalpesh', 'Apurva']:
+        elif colleague in ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep', 'Charvie', 'Soma', 'Kalpesh', 'Apurva', 'mahesh.naik', 'naik', 'mahesh.naik@yokogawa.com']:
             message = (
                 f"    {colleague}-san, it has truly been a joy and an honor working with you. When I look back at my time in YAD/UAE, some of my fondest memories are the moments shared with colleagues like you — moments filled with warmth, support, and genuine connection."
                 "Your kindness, positivity, and wholehearted acceptance made my journey not just comfortable, but truly meaningful. You brought a sense of belonging and encouragement that I will always carry with me. Working alongside you has enriched me both personally and professionally, and I’m sincerely grateful for that."
@@ -262,15 +262,15 @@ def main(input_name: str):
 
 if __name__ == "__main__":
     colleagues = [
-        
-    ['Shiozaki san', 'Shrikanth san', 'Furuya san'],
-    ['Rajeev san'], ['Jeeth'], ['Sumitra'],
-    ['Pankaj', 'Gouse', 'Neel', 'Karthik', 'Chaithanya', 'Sudeep'],
-    ['Deepali', 'Shreyanshi', 'Jyoti', 'Akshata',
-     'Shiv', 'Ajay', 'Sandhya', 'Amar'],
-    ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha'],
-    ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
-        'Charvie', 'Soma', 'Kalpesh', 'Apurva','mahesh.naik','naik','mahesh.naik@yokogawa.com']
+        ['Shiozaki san', 'Shrikanth san', 'Furuya san'],
+        ['Rajeev san'], ['Jeeth'], ['Sumitra'],
+        ['Pankaj', 'Gouse', 'Neel', 'Karthik', 'Chaithanya', 'Sudeep'],
+        ['Deepali', 'Shreyanshi', 'Jyoti', 'Akshata',
+         'Shiv', 'Ajay', 'Sandhya', 'Amar'],
+        ['Varun', 'Prajwal', 'Vandita', 'Thangella.Maheswara@yokogawa.com',
+            'mahes', 'maheswara', 'Sameer', 'Harsha'],
+        ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
+         'Charvie', 'Soma', 'Kalpesh', 'Apurva', 'mahesh.naik', 'naik', 'mahesh.naik@yokogawa.com']
     ]
     user_value = input(
         "Hey Colleague! Good to See You...\nPlease enter your Name or Email: "
