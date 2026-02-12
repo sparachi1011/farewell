@@ -16,8 +16,10 @@ COLLEAGUES = [
     ['Rajeev san'], ['Jeeth'], ['Sumitra'],
     ['Pankaj', 'Gouse', 'Neel', 'Karthik', 'Chaithanya', 'Sudeep'],
     ['Deepali', 'Shreyanshi', 'Jyoti', 'Akshata',
-        'Shiv', 'Ajay', 'Sandhya', 'Amar'],
+     'Shiv', 'Ajay', 'Sandhya', 'Amar'],
     ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha'],
+    ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
+        'Charvie', 'Soma', 'Kalpesh', 'Apurva']
 ]
 
 # ---------------------------- Pull content from alvida.py ----------------------------
