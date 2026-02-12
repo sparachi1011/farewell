@@ -17,7 +17,8 @@ COLLEAGUES = [
     ['Pankaj', 'Gouse', 'Neel', 'Karthik', 'Chaithanya', 'Sudeep'],
     ['Deepali', 'Shreyanshi', 'Jyoti', 'Akshata',
      'Shiv', 'Ajay', 'Sandhya', 'Amar'],
-    ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha'],
+    ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Thangella.Maheswara@yokogawa.com',
+        'mahes', 'maheswara', 'Sameer', 'Harsha'],
     ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
         'Charvie', 'Soma', 'Kalpesh', 'Apurva', 'mahesh.naik', 'naik', 'mahesh.naik@yokogawa.com']
 ]
