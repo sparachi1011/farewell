@@ -19,7 +19,7 @@ COLLEAGUES = [
      'Shiv', 'Ajay', 'Sandhya', 'Amar'],
     ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha'],
     ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
-        'Charvie', 'Soma', 'Kalpesh', 'Apurva']
+        'Charvie', 'Soma', 'Kalpesh', 'Apurva', 'mahesh.naik', 'naik', 'mahesh.naik@yokogawa.com']
 ]
 
 # ---------------------------- Pull content from alvida.py ----------------------------

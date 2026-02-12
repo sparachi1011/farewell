@@ -262,14 +262,15 @@ def main(input_name: str):
 
 if __name__ == "__main__":
     colleagues = [
-        ['Shiozaki san', 'Shrikanth san', 'Furuya san'],
-        ['Rajeev san'], ['Jeeth'], ['Sumitra'],
-        ['Pankaj', 'Gouse', 'Neel', 'Karthik', 'Chaithanya', 'Sudeep'],
-        ['Deepali', 'Shreyanshi', 'Jyoti', 'Akshata',
-         'Shiv', 'Ajay', 'Sandhya', 'Amar'],
-        ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha'],
-        ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
-            'Charvie', 'Soma', 'Kalpesh', 'Apurva']
+        
+    ['Shiozaki san', 'Shrikanth san', 'Furuya san'],
+    ['Rajeev san'], ['Jeeth'], ['Sumitra'],
+    ['Pankaj', 'Gouse', 'Neel', 'Karthik', 'Chaithanya', 'Sudeep'],
+    ['Deepali', 'Shreyanshi', 'Jyoti', 'Akshata',
+     'Shiv', 'Ajay', 'Sandhya', 'Amar'],
+    ['Varun', 'Prajwal', 'Vandita', 'Mahesh', 'Sameer', 'Harsha'],
+    ['Satya', 'Prahlad', 'Chaitanya', 'Pradeep',
+        'Charvie', 'Soma', 'Kalpesh', 'Apurva','mahesh.naik','naik','mahesh.naik@yokogawa.com']
     ]
     user_value = input(
         "Hey Colleague! Good to See You...\nPlease enter your Name or Email: "
